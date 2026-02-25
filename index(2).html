@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cafés NOLLET — Torréfaction artisanale, La Clayette</title>
+  <meta name="description" content="Cafés de spécialité torréfiés artisanalement à La Clayette, Saône-et-Loire. Microlots sélectionnés, traçabilité totale, retrait à l'atelier ou livraison locale." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --noir: #0f0d0b;
+      --brun-fonce: #1c1410;
+      --brun: #3a2318;
+      --brun-moyen: #6b3d2e;
+      --caramel: #c8854a;
+      --or: #d4a85a;
+      --creme: #f5efe6;
+      --ivoire: #faf6f0;
+      --gris-chaud: #8a7d72;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--ivoire); color: var(--brun-fonce); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 1.2rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled { background: rgba(15,13,11,0.93); backdrop-filter: blur(12px); padding: 0.8rem 4rem; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ivoire); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,239,230,0.75); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--or); }
+    .nav-cta { border: 1px solid var(--caramel) !important; color: var(--caramel) !important; padding: 0.45rem 1.2rem; }
+    .nav-cta:hover { background: var(--caramel) !important; color: var(--noir) !important; }
+
+    /* HERO */
+    .hero {
+      height: 100vh; min-height: 600px;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: 80px; /* espace nav */
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1600&q=85&auto=format&fit=crop');
+      background-size: cover; background-position: center 40%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10,7,5,0.95) 0%,
+        rgba(10,7,5,0.7) 35%,
+        rgba(10,7,5,0.45) 65%,
+        rgba(10,7,5,0.25) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 4rem 4rem;
+      max-width: 860px;
+      width: 100%;
+      animation: hero-in 1.2s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    @keyframes hero-in { from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)} }
+    .hero-eyebrow {
+      font-weight: 300; font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--caramel); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::before { content:''; width:40px; height:1px; background:var(--caramel); }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 300; line-height: 1.1; color: var(--ivoire); margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--or); }
+    .hero-sub {
+      font-weight: 200; font-size: 0.95rem; line-height: 1.8;
+      color: rgba(245,239,230,0.65); max-width: 500px; margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; padding: 0.9rem 2.2rem; background: var(--caramel); color: var(--noir); font-weight: 500; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.3s; }
+    .btn-primary:hover { background: var(--or); transform: translateY(-2px); }
+    .btn-secondary { display: inline-block; padding: 0.9rem 2.2rem; border: 1px solid rgba(245,239,230,0.3); color: rgba(245,239,230,0.8); font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: border-color 0.3s, color 0.3s; }
+    .btn-secondary:hover { border-color: var(--or); color: var(--or); }
+    .hero-scroll { position: absolute; bottom: 2rem; right: 4rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; color: rgba(245,239,230,0.3); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 300; }
+    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, rgba(245,239,230,0.3), transparent); animation: scroll-anim 2s ease-in-out infinite; }
+    @keyframes scroll-anim { 0%,100%{transform:scaleY(1);transform-origin:top}50%{transform:scaleY(0.5)} }
+
+    /* STATS */
+    .stats-band { background: var(--brun-fonce); padding: 3rem 4rem; display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+    .stat-item { text-align: center; border-right: 1px solid rgba(245,239,230,0.08); padding: 1rem 0; }
+    .stat-item:last-child { border-right: none; }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--or); line-height: 1; margin-bottom: 0.5rem; }
+    .stat-label { font-weight: 200; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,239,230,0.4); }
+
+    /* PHOTO STRIP */
+    .photo-strip { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; height: 340px; gap: 3px; }
+    .photo-strip-item { overflow: hidden; position: relative; }
+    .photo-strip-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); filter: brightness(0.85) saturate(0.9); display: block; }
+    .photo-strip-item:hover img { transform: scale(1.06); filter: brightness(0.95) saturate(1.1); }
+    .photo-strip-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.2rem 1rem 0.8rem;
+      background: linear-gradient(to top, rgba(10,7,5,0.8), transparent);
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(245,239,230,0.7); font-weight: 300;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .photo-strip-item:hover .photo-strip-caption { opacity: 1; }
+
+    /* DIFF BAND */
+    .diff-band { background: var(--caramel); padding: 2.5rem 4rem; display: flex; overflow-x: auto; }
+    .diff-item { flex: 1; min-width: 180px; padding: 1rem 2rem 1rem 0; margin-right: 2rem; border-right: 1px solid rgba(15,13,11,0.15); display: flex; flex-direction: column; gap: 0.3rem; }
+    .diff-item:last-child { border-right: none; margin-right: 0; }
+    .diff-vs { font-weight: 500; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(15,13,11,0.45); }
+    .diff-ici { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; color: var(--noir); line-height: 1.2; }
+    .diff-gms { font-size: 0.72rem; font-weight: 200; color: rgba(15,13,11,0.45); text-decoration: line-through; margin-top: 0.2rem; }
+
+    /* GÉNÉRAL */
+    section { padding: 6rem 4rem; }
+    .section-eyebrow { font-weight: 300; font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--caramel); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem; }
+    .section-eyebrow::before { content:''; width:30px; height:1px; background:var(--caramel); }
+
+    /* HISTOIRE */
+    #histoire { background: var(--noir); color: var(--ivoire); display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch; padding: 0; }
+    .histoire-photo { position: relative; overflow: hidden; min-height: 560px; }
+    .histoire-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) saturate(0.8); display: block; }
+    .histoire-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to right, transparent 55%, rgba(28,20,16,0.7) 100%); }
+    .histoire-photo-badge { position: absolute; bottom: 3rem; left: 3rem; background: var(--caramel); padding: 1.5rem 2rem; color: var(--noir); }
+    .histoire-photo-badge-year { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 600; line-height: 1; }
+    .histoire-photo-badge-label { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.25rem; }
+    .histoire-text { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .histoire-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,3vw,3.2rem); font-weight: 300; line-height: 1.15; margin-bottom: 1.8rem; color: var(--ivoire); }
+    .histoire-text h2 em { font-style: italic; color: var(--or); }
+    .histoire-text p { font-weight: 200; font-size: 0.92rem; line-height: 1.9; color: rgba(245,239,230,0.65); margin-bottom: 1.2rem; }
+    .histoire-text p strong { color: rgba(245,239,230,0.85); font-weight: 400; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.8rem; }
+    .tag { border: 1px solid rgba(200,133,74,0.3); color: var(--caramel); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300; padding: 0.35rem 0.9rem; }
+
+    /* IMAGE BREAK */
+    .image-break { height: 45vh; min-height: 280px; max-height: 460px; position: relative; overflow: hidden; }
+    .image-break img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55) saturate(0.8); display: block; }
+    .image-break-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .image-break-text blockquote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem,3vw,2.6rem); font-weight: 300; font-style: italic; color: var(--ivoire); line-height: 1.45; max-width: 780px; padding: 0 3rem; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+    .image-break-text blockquote footer { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-style: normal; letter-spacing: 0.3em; text-transform: uppercase; color: var(--caramel); margin-top: 1.2rem; font-weight: 300; background: transparent; padding: 0; }
+
+    /* TECH */
+    #tech { background: var(--brun-fonce); color: var(--ivoire); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; align-items: stretch; }
+    .tech-photo { position: relative; overflow: hidden; min-height: 560px; }
+    .tech-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) saturate(0.75); display: block; }
+    .tech-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to left, transparent 50%, rgba(28,20,16,0.6) 100%); }
+    .tech-content { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .tech-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,3vw,3.2rem); font-weight: 300; line-height: 1.15; color: var(--ivoire); margin-bottom: 1.8rem; }
+    .tech-content h2 em { font-style: italic; color: var(--or); }
+    .tech-content p { font-weight: 200; font-size: 0.92rem; line-height: 1.9; color: rgba(245,239,230,0.6); margin-bottom: 1.2rem; }
+    .tech-terminal { background: rgba(0,0,0,0.5); border: 1px solid rgba(200,133,74,0.12); border-left: 3px solid var(--caramel); padding: 1.5rem 1.8rem; font-family: 'Courier New', monospace; font-size: 0.73rem; color: rgba(200,133,74,0.65); line-height: 1.9; margin-top: 1.5rem; }
+    .tech-terminal .comment { color: rgba(245,239,230,0.18); }
+    .tech-terminal .value { color: var(--or); font-weight: bold; }
+    .tech-terminal .label { color: rgba(245,239,230,0.45); }
+    .tech-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .tech-spec { border: 1px solid rgba(200,133,74,0.1); padding: 1.1rem; transition: border-color 0.3s; }
+    .tech-spec:hover { border-color: rgba(200,133,74,0.3); }
+    .tech-spec-icon { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .tech-spec-title { font-weight: 400; font-size: 0.73rem; letter-spacing: 0.08em; color: var(--caramel); margin-bottom: 0.3rem; }
+    .tech-spec-desc { font-size: 0.73rem; line-height: 1.6; color: rgba(245,239,230,0.38); font-weight: 200; }
+
+    /* IMPORTATEURS */
+    #importateurs { background: var(--ivoire); }
+    .importateurs-header { max-width: 700px; margin-bottom: 3.5rem; }
+    .importateurs-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,3.5vw,3.2rem); font-weight: 300; line-height: 1.2; color: var(--brun-fonce); margin-bottom: 1.2rem; }
+    .importateurs-header h2 em { font-style: italic; color: var(--brun-moyen); }
+    .importateurs-header p { font-weight: 200; font-size: 0.92rem; line-height: 1.9; color: var(--gris-chaud); }
+    .importateurs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .importateur-card { background: var(--brun-fonce); overflow: hidden; position: relative; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+    .importateur-card:hover { transform: translateY(-5px); }
+    .importateur-card::before { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--caramel); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; z-index:2; }
+    .importateur-card:hover::before { transform: scaleX(1); }
+    .importateur-photo { height: 190px; overflow: hidden; }
+    .importateur-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) saturate(0.7); transition: transform 0.6s ease, filter 0.4s; display: block; }
+    .importateur-card:hover .importateur-photo img { transform: scale(1.07); filter: brightness(0.75) saturate(0.9); }
+    .importateur-body { padding: 2rem 2rem 2.5rem; }
+    .importateur-flag { font-size: 1.4rem; margin-bottom: 0.8rem; display: block; }
+    .importateur-name { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; color: var(--or); margin-bottom: 0.4rem; }
+    .importateur-origin { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--caramel); font-weight: 300; margin-bottom: 1rem; }
+    .importateur-desc { font-size: 0.83rem; line-height: 1.8; color: rgba(245,239,230,0.5); font-weight: 200; }
+
+    /* PHILOSOPHIE */
+    #philosophie { background: linear-gradient(135deg, var(--brun) 0%, var(--brun-fonce) 100%); color: var(--ivoire); text-align: center; padding: 7rem 4rem; }
+    .philo-inner { max-width: 800px; margin: 0 auto; }
+    .philo-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,4vw,4rem); font-weight: 300; line-height: 1.2; color: var(--ivoire); margin-bottom: 2.5rem; }
+    .philo-inner h2 em { font-style: italic; color: var(--or); }
+    .philo-inner p { font-weight: 200; font-size: 0.95rem; line-height: 2; color: rgba(245,239,230,0.65); margin-bottom: 1.5rem; }
+    .philo-inner p em { font-style: italic; color: rgba(245,239,230,0.9); }
+    .philo-divider { width: 60px; height: 1px; background: var(--caramel); margin: 2.5rem auto; }
+    .philo-values { display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; margin-top: 3.5rem; text-align: left; }
+    .philo-value-icon { font-size: 1.3rem; margin-bottom: 0.8rem; }
+    .philo-value-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--or); margin-bottom: 0.6rem; }
+    .philo-value-desc { font-size: 0.83rem; line-height: 1.8; color: rgba(245,239,230,0.5); font-weight: 200; }
+
+    /* PRESSE */
+    #presse { background: var(--brun-fonce); color: var(--ivoire); }
+    .presse-header { text-align: center; margin-bottom: 3.5rem; }
+    .presse-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,3.5vw,3.2rem); font-weight: 300; color: var(--ivoire); margin-bottom: 0.6rem; }
+    .presse-header p { font-weight: 200; color: rgba(245,239,230,0.35); font-size: 0.85rem; }
+    .presse-grid { display: grid; grid-template-columns: 5fr 3fr; gap: 2px; }
+    .presse-card { background: rgba(255,255,255,0.03); padding: 3rem; border: 1px solid rgba(255,255,255,0.05); transition: background 0.3s; }
+    .presse-card:hover { background: rgba(255,255,255,0.055); }
+    .presse-card.featured { background: rgba(200,133,74,0.06); border-color: rgba(200,133,74,0.12); }
+    .presse-quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; line-height: 0.7; color: var(--caramel); opacity: 0.35; margin-bottom: 1rem; display: block; }
+    .presse-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; font-weight: 300; line-height: 1.7; color: var(--ivoire); margin-bottom: 1.8rem; }
+    .presse-card.featured .presse-quote { font-size: 1.38rem; }
+    .presse-source { display: flex; flex-direction: column; gap: 0.2rem; }
+    .presse-media { font-weight: 500; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--caramel); }
+    .presse-date { font-size: 0.68rem; color: rgba(245,239,230,0.3); font-weight: 200; }
+    .presse-sidebar { display: flex; flex-direction: column; gap: 2px; }
+    .presse-card.placeholder { background: rgba(255,255,255,0.01); border: 1px dashed rgba(255,255,255,0.07); }
+    .presse-placeholder-text { font-size: 0.78rem; font-weight: 200; line-height: 1.7; color: rgba(245,239,230,0.2); font-style: italic; }
+
+    /* RETRAIT */
+    #retrait { background: var(--noir); color: var(--ivoire); }
+    .retrait-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .retrait-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,3vw,2.8rem); font-weight: 300; line-height: 1.2; color: var(--ivoire); margin-bottom: 1.8rem; }
+    .retrait-text h2 em { font-style: italic; color: var(--or); }
+    .retrait-text p { font-weight: 200; font-size: 0.9rem; line-height: 1.9; color: rgba(245,239,230,0.6); margin-bottom: 1.2rem; }
+    .retrait-options { display: flex; flex-direction: column; gap: 1.2rem; }
+    .retrait-option { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1.2rem; border: 1px solid rgba(245,239,230,0.07); transition: border-color 0.3s; }
+    .retrait-option:hover { border-color: rgba(200,133,74,0.3); }
+    .retrait-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .retrait-option-title { font-weight: 400; font-size: 0.8rem; letter-spacing: 0.08em; color: var(--caramel); margin-bottom: 0.35rem; }
+    .retrait-option-desc { font-size: 0.78rem; line-height: 1.7; color: rgba(245,239,230,0.45); font-weight: 200; }
+
+    /* CTA BOUTIQUE */
+    #boutique { background: var(--ivoire); padding: 6rem 4rem; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    #boutique h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,3.5vw,3.5rem); font-weight: 300; line-height: 1.2; color: var(--brun-fonce); margin-bottom: 1.2rem; max-width: 650px; }
+    #boutique h2 em { font-style: italic; color: var(--brun-moyen); }
+    #boutique p { font-weight: 200; font-size: 0.92rem; line-height: 1.9; color: var(--gris-chaud); max-width: 520px; margin-bottom: 2.5rem; }
+    .btn-dark { display: inline-block; padding: 1rem 2.8rem; background: var(--brun-fonce); color: var(--ivoire); font-weight: 400; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.3s; }
+    .btn-dark:hover { background: var(--brun); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { background: var(--noir); color: rgba(245,239,230,0.35); padding: 4rem 4rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3.5rem; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--ivoire); margin-bottom: 0.8rem; }
+    .footer-tagline { font-size: 0.78rem; line-height: 1.8; font-weight: 200; }
+    .footer-col h4 { font-weight: 400; font-size: 0.63rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--caramel); margin-bottom: 1.3rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.65rem; font-size: 0.8rem; font-weight: 200; }
+    .footer-col ul li a { color: rgba(245,239,230,0.4); text-decoration: none; transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--or); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.8rem; display: flex; justify-content: space-between; font-size: 0.68rem; font-weight: 200; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      #histoire, #tech { grid-template-columns: 1fr; }
+      .histoire-photo, .tech-photo { min-height: 320px; }
+      .importateurs-grid { grid-template-columns: 1fr 1fr; }
+      .presse-grid { grid-template-columns: 1fr; }
+      .retrait-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .photo-strip { grid-template-columns: 1fr 1fr; height: auto; }
+      .photo-strip-item { height: 180px; }
+    }
+    @media (max-width: 768px) {
+      nav, section, .stats-band, .diff-band, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      nav { padding-top: 1rem; padding-bottom: 1rem; }
+      nav.scrolled { padding: 0.6rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 1.5rem 3rem; }
+      .hero-scroll { display: none; }
+      .stats-band { grid-template-columns: repeat(2,1fr); }
+      .photo-strip { grid-template-columns: 1fr 1fr; }
+      .importateurs-grid { grid-template-columns: 1fr; }
+      .philo-values { grid-template-columns: 1fr; gap: 2rem; }
+      .tech-specs { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.8rem; }
+      #histoire, #tech { padding: 0; }
+      .histoire-text, .tech-content { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="nav-logo" href="#">Cafés NOLLET</a>
+  <ul class="nav-links">
+    <li><a href="#histoire">L'histoire</a></li>
+    <li><a href="#tech">Méthode</a></li>
+    <li><a href="#importateurs">Nos sources</a></li>
+    <li><a href="#presse">Presse</a></li>
+    <li><a href="#retrait">Commande</a></li>
+    <li><a href="https://cafes-nollet.sumupstore.com" target="_blank" class="nav-cta">Boutique</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Torréfaction artisanale · La Clayette, Saône-et-Loire</p>
+    <h1 class="hero-title">Le café comme un<br><em>acte de passion.</em></h1>
+    <p class="hero-sub">Autodidacte passionné, Jean-Julien torréfie depuis 2019 des microlots d'exception dans l'ancienne usine Fonlupt — au cœur de La Clayette, dans les mêmes murs où l'on fabriquait autrefois les vélos à la main.</p>
+    <div class="hero-actions">
+      <a href="https://cafes-nollet.sumupstore.com" target="_blank" class="btn-primary">Découvrir nos cafés</a>
+      <a href="#histoire" class="btn-secondary">Notre histoire</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat-item"><div class="stat-number">2019</div><div class="stat-label">Fondée</div></div>
+  <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Microlots tracés</div></div>
+  <div class="stat-item"><div class="stat-number">5+</div><div class="stat-label">Origines travaillées</div></div>
+  <div class="stat-item"><div class="stat-number">0</div><div class="stat-label">Compromis qualité</div></div>
+</div>
+
+<!-- PHOTO STRIP -->
+<div class="photo-strip">
+  <div class="photo-strip-item">
+    <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=80&auto=format&fit=crop" alt="Grains de café torréfiés" loading="lazy" />
+    <div class="photo-strip-caption">Grains torréfiés</div>
+  </div>
+  <div class="photo-strip-item">
+    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80&auto=format&fit=crop" alt="Origine café" loading="lazy" />
+    <div class="photo-strip-caption">À l'origine</div>
+  </div>
+  <div class="photo-strip-item">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80&auto=format&fit=crop" alt="Grain vert" loading="lazy" />
+    <div class="photo-strip-caption">Grain vert</div>
+  </div>
+  <div class="photo-strip-item">
+    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=700&q=80&auto=format&fit=crop" alt="Café artisanal" loading="lazy" />
+    <div class="photo-strip-caption">Artisanat</div>
+  </div>
+</div>
+
+<!-- DIFF BAND -->
+<div class="diff-band">
+  <div class="diff-item">
+    <span class="diff-vs">Ici</span>
+    <span class="diff-ici">Microlots identifiés à la parcelle</span>
+    <span class="diff-gms">Assemblages industriels anonymes</span>
+  </div>
+  <div class="diff-item">
+    <span class="diff-vs">Ici</span>
+    <span class="diff-ici">Petits lots, fraîcheur réelle</span>
+    <span class="diff-gms">Stock entrepôt de plusieurs mois</span>
+  </div>
+  <div class="diff-item">
+    <span class="diff-vs">Ici</span>
+    <span class="diff-ici">Profil de torréfaction sur mesure</span>
+    <span class="diff-gms">Courbe standardisée pour le volume</span>
+  </div>
+  <div class="diff-item">
+    <span class="diff-vs">Ici</span>
+    <span class="diff-ici">Un artisan local, disponible</span>
+    <span class="diff-gms">Service client centralisé</span>
+  </div>
+</div>
+
+<!-- HISTOIRE -->
+<section id="histoire">
+  <div class="histoire-photo">
+    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80&auto=format&fit=crop" alt="Ancienne usine artisanale" loading="lazy" />
+    <div class="histoire-photo-overlay"></div>
+    <div class="histoire-photo-badge">
+      <div class="histoire-photo-badge-year">1920</div>
+      <div class="histoire-photo-badge-label">Usine Fonlupt fondée</div>
+    </div>
+  </div>
+  <div class="histoire-text">
+    <p class="section-eyebrow">L'histoire</p>
+    <h2>L'usine<br><em>Fonlupt</em><br>retrouve sa vocation.</h2>
+    <p>En 1920, Alfred-Jacques Fonlupt crée à La Clayette l'une des premières manufactures de cycles de la région. Dans ces ateliers, <strong>jusqu'à 500 vélos artisanaux sortent chaque mois</strong> — soudage de cadres, sablage, émaillage, montage complet. L'usine produit aussi des motos et des manèges pour enfants. Un fleuron de l'artisanat clayettois reconnu dans toute la France.</p>
+    <p>En 2019, dans ces mêmes murs chargés d'histoire, <strong>Cafés NOLLET naît</strong>. Une autre forme de précision artisanale prend place : celle de la torréfaction. Même exigence du geste juste, même attachement au territoire.</p>
+    <p>Jean-Julien n'a pas choisi ce lieu par hasard. Il y a reconnu l'esprit d'un endroit où l'on prend le temps de bien faire.</p>
+    <div class="tag-list">
+      <span class="tag">La Clayette, 71800</span>
+      <span class="tag">Ancienne usine Fonlupt</span>
+      <span class="tag">Artisanat depuis 1920</span>
+      <span class="tag">Depuis 2019</span>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK -->
+<div class="image-break">
+  <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=1600&q=80&auto=format&fit=crop&crop=center" alt="Café de spécialité" loading="lazy" />
+  <div class="image-break-text">
+    <blockquote>
+      « On ne se demande jamais si un café est vraiment bon, alors qu'on le fait facilement pour le vin. »
+      <footer>— Jean-Julien · Journal de Saône-et-Loire, 2020</footer>
+    </blockquote>
+  </div>
+</div>
+
+<!-- TECH -->
+<section id="tech">
+  <div class="tech-content">
+    <p class="section-eyebrow">La méthode</p>
+    <h2>L'automatisme<br>au service de<br><em>l'artisanat.</em></h2>
+    <p>Automaticien de métier, Jean-Julien a appliqué au café la même rigueur qu'à la programmation d'automates industriels : mesurer, analyser, itérer. Deux ans d'auto-formation, de données et de dégustations.</p>
+    <p>Chaque lot est piloté avec <strong>Artisan Roaster Scope</strong>, utilisé par les meilleurs torréfacteurs mondiaux. Température bean, Rate of Rise, taux de développement : tout est enregistré et comparé lot après lot.</p>
+    <div class="tech-terminal">
+      <div class="comment">// Session · Éthiopie Yirgacheffe</div>
+      <br>
+      <div><span class="label">First crack  </span><span class="value">197°C / 9'42"</span></div>
+      <div><span class="label">Drop         </span><span class="value">205°C / 11'18"</span></div>
+      <div><span class="label">RoR final    </span><span class="value">8°C / min</span></div>
+      <div><span class="label">Dev. time    </span><span class="value">22%</span></div>
+      <br>
+      <div class="comment">// Outil : Artisan Roaster Scope</div>
+      <div class="comment">// → Cupping : 87 pts.</div>
+    </div>
+    <div class="tech-specs">
+      <div class="tech-spec">
+        <div class="tech-spec-icon">📊</div>
+        <div class="tech-spec-title">Artisan Roaster Scope</div>
+        <div class="tech-spec-desc">Enregistrement temps réel de chaque courbe. Chaque lot documenté et comparable.</div>
+      </div>
+      <div class="tech-spec">
+        <div class="tech-spec-icon">🌡️</div>
+        <div class="tech-spec-title">Contrôle au degré près</div>
+        <div class="tech-spec-desc">Déshydratation progressive, refroidissement instantané. Aucun lot au hasard.</div>
+      </div>
+      <div class="tech-spec">
+        <div class="tech-spec-icon">🔄</div>
+        <div class="tech-spec-title">Amélioration continue</div>
+        <div class="tech-spec-desc">L'historique guide la session suivante. Une progression mesurable.</div>
+      </div>
+      <div class="tech-spec">
+        <div class="tech-spec-icon">🧪</div>
+        <div class="tech-spec-title">Cupping systématique</div>
+        <div class="tech-spec-desc">Aucun lot ne part sans dégustation. La tasse valide les données.</div>
+      </div>
+    </div>
+  </div>
+  <div class="tech-photo">
+    <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?w=900&q=80&auto=format&fit=crop" alt="Torréfaction artisanale" loading="lazy" />
+    <div class="tech-photo-overlay"></div>
+  </div>
+</section>
+
+<!-- IMPORTATEURS -->
+<section id="importateurs">
+  <div class="importateurs-header">
+    <p class="section-eyebrow">Nos sources</p>
+    <h2>Le café commence<br><em>bien avant</em> la torréfaction.</h2>
+    <p>Tout repose sur la qualité du grain vert. Jean-Julien s'approvisionne exclusivement auprès d'importateurs de spécialité — garants de la relation directe avec les producteurs, de la traçabilité et du respect des écosystèmes. Pas de café générique, pas de label de façade.</p>
+  </div>
+  <div class="importateurs-grid">
+    <div class="importateur-card">
+      <div class="importateur-photo">
+        <img src="https://images.unsplash.com/photo-1524350876685-274059332603?w=600&q=80&auto=format&fit=crop" alt="Cerises de café" loading="lazy" />
+      </div>
+      <div class="importateur-body">
+        <span class="importateur-flag">🫐</span>
+        <div class="importateur-name">Berry Tale</div>
+        <div class="importateur-origin">France · Microlots haute altitude</div>
+        <p class="importateur-desc">Importateur indépendant français spécialisé dans les microlots de haute altitude, Berry Tale entretient des relations directes avec des producteurs engagés. Approche saisonnière, profils aromatiques uniques à chaque récolte.</p>
+      </div>
+    </div>
+    <div class="importateur-card">
+      <div class="importateur-photo">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80&auto=format&fit=crop" alt="Café origine spécialité" loading="lazy" />
+      </div>
+      <div class="importateur-body">
+        <span class="importateur-flag">🌿</span>
+        <div class="importateur-name">Belco</div>
+        <div class="importateur-origin">France · Référence depuis 1991</div>
+        <p class="importateur-desc">Pionnier du café de spécialité en France, Belco travaille directement avec des coopératives sur tous les continents depuis plus de trente ans. Salvador, Congo, Inde, Guatemala, Éthiopie — une référence absolue.</p>
+      </div>
+    </div>
+    <div class="importateur-card">
+      <div class="importateur-photo">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80&auto=format&fit=crop" alt="Origines monde" loading="lazy" />
+      </div>
+      <div class="importateur-body">
+        <span class="importateur-flag">🌍</span>
+        <div class="importateur-name">Autres partenaires</div>
+        <div class="importateur-origin">Europe · Origines singulières</div>
+        <p class="importateur-desc">Pour les naturels d'exception et les fermentations expérimentales, Jean-Julien s'appuie sur d'autres importateurs spécialisés. Critère constant : traçabilité jusqu'au producteur et rémunération à sa juste valeur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHIE -->
+<section id="philosophie">
+  <div class="philo-inner">
+    <p class="section-eyebrow" style="justify-content:center">Notre philosophie</p>
+    <h2>Le goût n'est pas<br>un accident.<br><em>C'est une intention.</em></h2>
+    <p>Chaque paramètre est pensé pour révéler ce que le grain a à dire — pas pour masquer ses défauts. Pas de torréfaction foncée pour uniformiser, pas d'assemblage pour réduire les coûts. Uniquement des origines qui méritent d'être entendues.</p>
+    <p><em>"Un café peut avoir des notes acidulées, boisées, cacaotées… C'est la météo et le terroir qui font le goût. Comme dans le vin, il y a des millésimes."</em></p>
+    <div class="philo-divider"></div>
+    <div class="philo-values">
+      <div>
+        <div class="philo-value-icon">🔍</div>
+        <div class="philo-value-title">Traçabilité totale</div>
+        <p class="philo-value-desc">Chaque café est identifiable jusqu'à la parcelle, la récolte, le producteur. Vous savez exactement ce que vous buvez.</p>
+      </div>
+      <div>
+        <div class="philo-value-icon">⚖️</div>
+        <div class="philo-value-title">Petits lots, fraîcheur réelle</div>
+        <p class="philo-value-desc">Torréfié régulièrement en petites quantités. La fraîcheur n'est pas un argument marketing — c'est une réalité physique dans la tasse.</p>
+      </div>
+      <div>
+        <div class="philo-value-icon">🤝</div>
+        <div class="philo-value-title">Commerce éthique</div>
+        <p class="philo-value-desc">Via des importateurs engagés, les producteurs sont rémunérés bien au-dessus du cours du marché. Votre café finance une filière durable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESSE -->
+<section id="presse">
+  <div class="presse-header">
+    <p class="section-eyebrow" style="justify-content:center">Ils en parlent</p>
+    <h2>Revue de presse</h2>
+    <p>Journal de Saône-et-Loire · Charlotte Rebet · Juillet 2020</p>
+  </div>
+  <div class="presse-grid">
+    <div class="presse-card featured">
+      <span class="presse-quote-mark">"</span>
+      <p class="presse-quote">Difficile d'imaginer qu'il n'en buvait presque pas, il y a encore deux ans. Il a eu l'occasion de goûter un vrai café de spécialité, préparé et soigné — une révélation. Curieux par nature, le Clayettois a alors apprivoisé un produit qu'on a toujours sous la main ou qu'on prend par réflexe en fin de repas. Et admis que le café est bien plus subtil que les habitudes de consommation qui lui sont réservées.</p>
+      <div class="presse-source">
+        <span class="presse-media">Journal de Saône-et-Loire</span>
+        <span class="presse-date">Charlotte Rebet · 17 juillet 2020</span>
+      </div>
+    </div>
+    <div class="presse-sidebar">
+      <div class="presse-card">
+        <span class="presse-quote-mark">"</span>
+        <p class="presse-quote">Il a installé son atelier dans un haut lieu de l'artisanat clayettois : l'usine Fonlupt, ancienne fabrique de vélos.</p>
+        <div class="presse-source">
+          <span class="presse-media">Journal de Saône-et-Loire</span>
+          <span class="presse-date">Juillet 2020</span>
+        </div>
+      </div>
+      <div class="presse-card">
+        <span class="presse-quote-mark">"</span>
+        <p class="presse-quote">Je propose une vision globale du café, mais je veux offrir mes services aux locaux. On perd le sens de l'artisanat quand on veut rayonner trop grand.</p>
+        <div class="presse-source">
+          <span class="presse-media">Jean-Julien</span>
+          <span class="presse-date">JSL · Juillet 2020</span>
+        </div>
+      </div>
+      <div class="presse-card placeholder">
+        <p class="presse-placeholder-text">Votre prochaine parution ici.<br><br>Articles de presse, blogs café, témoignages — à compléter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RETRAIT -->
+<section id="retrait">
+  <div class="retrait-inner">
+    <div class="retrait-text">
+      <p class="section-eyebrow">Commander</p>
+      <h2>Proche de vous,<br><em>autrement.</em></h2>
+      <p>Jean-Julien ne vend pas en grande distribution et ne cherche pas à le faire. Le choix de rester artisanal et local est une posture, pas une contrainte. La proximité avec les clients fait partie de la méthode : comprendre ce qu'ils aiment, faire déguster, adapter les recommandations.</p>
+      <p>Passez commande en ligne, puis choisissez votre mode de réception ci-dessous.</p>
+    </div>
+    <div class="retrait-options">
+      <div class="retrait-option">
+        <div class="retrait-icon">🏭</div>
+        <div>
+          <div class="retrait-option-title">Retrait à l'atelier — La Clayette</div>
+          <div class="retrait-option-desc">Venez chercher votre café directement à l'usine Fonlupt, sur rendez-vous. L'occasion de voir le lieu, discuter, et repartir avec vos grains tout frais.</div>
+        </div>
+      </div>
+      <div class="retrait-option">
+        <div class="retrait-icon">🚗</div>
+        <div>
+          <div class="retrait-option-title">Livraison locale</div>
+          <div class="retrait-option-desc">Livraison possible sur La Clayette et les communes alentour. Contactez-nous directement.</div>
+        </div>
+      </div>
+      <div class="retrait-option">
+        <div class="retrait-icon">📞</div>
+        <div>
+          <div class="retrait-option-title">Contact direct</div>
+          <div class="retrait-option-desc"><a href="tel:0673538098" style="color:var(--caramel);text-decoration:none">06 73 53 80 98</a> — Jean-Julien répond directement. Pas de standard, pas de formulaire automatique.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="boutique">
+  <p class="section-eyebrow" style="justify-content:center">La boutique</p>
+  <h2>Des cafés d'exception,<br><em>livrés depuis l'atelier.</em></h2>
+  <p>Une sélection de cafés de spécialité en grains, issus de microlots tracés et torréfiés à La Clayette. Disponibles directement en ligne ou sur rendez-vous à l'atelier.</p>
+  <a href="https://cafes-nollet.sumupstore.com" target="_blank" class="btn-dark">Accéder à la boutique</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Cafés NOLLET</div>
+      <p class="footer-tagline">
+        Torréfaction artisanale de cafés de spécialité<br>
+        Ancienne usine Fonlupt · La Clayette, Saône-et-Loire 71800<br>
+        Fondée en 2019 · Microlots · Traçabilité totale
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#histoire">Notre histoire</a></li>
+        <li><a href="#tech">La méthode</a></li>
+        <li><a href="#importateurs">Nos sources</a></li>
+        <li><a href="#presse">Presse</a></li>
+        <li><a href="#retrait">Retrait & livraison</a></li>
+        <li><a href="https://cafes-nollet.sumupstore.com" target="_blank">Boutique en ligne</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:0673538098">06 73 53 80 98</a></li>
+        <li><a href="mailto:contact@cafesnollet.fr">contact@cafesnollet.fr</a></li>
+        <li><a href="#">La Clayette, 71800</a></li>
+        <li><a href="https://cafes-nollet.sumupstore.com/contact" target="_blank">Formulaire SumUp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Cafés NOLLET — Tous droits réservés</span>
+    <span>Artisanat clayettois · Saône-et-Loire</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+</script>
+</body>
+</html>
